@@ -1,0 +1,14 @@
+name: Output Information
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output GitHub Context
+        run: |
+          echo "GitHub Context:"
+          echo "${{ toJson(github) }}"
+      - name: Output Runner Environment Variables
+        run: |
+          echo "Runner Environment Variables:"
+          printenv | sort
