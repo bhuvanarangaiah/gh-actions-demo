@@ -1,0 +1,40 @@
+name: CI Deployment Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: |
+          echo "Running tests..."
+          npm test
+          echo "Tests completed."
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build Project
+        run: |
+          echo "Building project..."
+          npm run build
+          echo "Build completed."
+      - name: Deploy Project
+        run: |
+          echo "Deploying project..."
+          # Deployment commands go here
+          echo "Deployment completed."
